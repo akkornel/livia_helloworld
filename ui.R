@@ -1,3 +1,4 @@
 ui <- fluidPage(
-  "Hello, world!"
+  "Hello, world!",
+  textOutput('env')
 )
