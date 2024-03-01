@@ -28,4 +28,4 @@ RUN R -q -e 'renv::restore()' && \
 # When the container is run without an explicit command, this is what we do:
 # Start our Shiny app!  Listen on port 3838, and expose that to the outside.
 EXPOSE 3838
-CMD ["R", "-q", "-e", "shiny::runApp('/usr/local/src/myscripts', port=3838)"]
+CMD ["R", "-q", "-e", "shiny::runApp('/usr/local/src/myscripts', host='0.0.0.0', port=3838)"]
