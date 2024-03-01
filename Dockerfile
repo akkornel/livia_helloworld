@@ -24,3 +24,8 @@ RUN R -q -e 'install.packages("renv")' && rm -rf /tmp/*
 # appropriately!
 RUN R -q -e 'renv::restore()' && \
 	rm -rf /tmp/*
+
+# When the container is run without an explicit command, this is what we do:
+# Start our Shiny app!  Listen on port 3838, and expose that to the outside.
+EXPOSE 3838
+CMD ["R", "-q", "-e", "shiny::runApp('/usr/local/src/myscripts', port=3838)"]
