@@ -36,8 +36,11 @@ RUN R -q -e 'install.packages("renv")' && rm -rf /tmp/*
 # Restore the environment from the lock file.
 # NOTE: If you change the lock file, be sure to update the Ubuntu package list
 # appropriately!
-RUN R -q -e 'renv::restore()' && \
-	rm -rf /tmp/*
+# NOTE: Renv caches downloaded packages, so we have to clean them up at the end.
+#       The `use.cache` setting applies to installed packages, not sources.
+# TODO: See if we can save the package downloads somewhere
+RUN R -q -e 'renv::settings$use.cache(FALSE)' -e 'renv::restore()' && \
+	rm -rf /tmp/* /root/.cache/R/renv/source/repository/*
 
 # Declare the environment variables we want, and set some default values.
 # NOTE: It's understood that these defaults won't work in production.
