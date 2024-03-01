@@ -1,9 +1,10 @@
 # vim: ts=2 sw=2 noet
 
 # The Rocker project makes container images for R.
-# We want their container image that includes Shiny.
+# We'll be bringing in a specific Shiny version, so we can't use their Shiny
+# container images.  Instead, we'll use their reproducable images.
 # NOTE: This is where the R version is set!
-FROM rocker/shiny:4.3.2
+FROM rocker/r-ver:4.3.2
 
 # Install any Ubuntu packages that we need for our R packages.
 RUN apt-get update && \
