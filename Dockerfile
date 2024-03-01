@@ -16,7 +16,11 @@ RUN apt-get update && \
 COPY . /usr/local/src/myscripts
 WORKDIR /usr/local/src/myscripts
 
-# Install what we need in order to install packages:
-# * remotes lets us install specific versions of packages
-# * readr parses CSV files
-RUN R -q -e 'install.packages("remotes")' && R -q -e 'install.packages("readr")' && rm -rf /tmp/*
+# Install renv, so that we can import the environment.
+RUN R -q -e 'install.packages("renv")' && rm -rf /tmp/*
+
+# Restore the environment from the lock file.
+# NOTE: If you change the lock file, be sure to update the Ubuntu package list
+# appropriately!
+RUN R -q -e 'renv::restore()' && \
+	rm -rf /tmp/*
