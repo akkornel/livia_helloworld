@@ -1,0 +1,4 @@
+# Ignore certain files & file extensions
+
+# Vim temporary files
+*.swp
