@@ -1,7 +1,17 @@
 # vim: ts=2 sw=2 noet
 
+# The Rocker project makes container images for R.
+# We'll be bringing in a specific Shiny version, so we can't use their Shiny
+# container images.  Instead, we'll use their reproducable images.
+# NOTE: This is where the R version is set!
+FROM rocker/r-ver:4.3.2
+LABEL org.opencontainers.image.base.name="rocker/r-ver:4.3.2"
+
 # Set some image metadata!
 # NOTE: Some of the OCI labels are set automatically by the GitHub Actions workflow.
+# NOTE: org.opencontainers.image.base.name is set above this block, as a subtle
+#       reminder that, when you change the source image, you also need to
+#       update the label!
 LABEL org.opencontainers.image.description="A simple app to test if this all works!"
 LABEL org.opencontainers.image.documentation="TBD"
 LABEL org.opencontainers.image.licenses="UNLICENSED"
@@ -9,13 +19,6 @@ LABEL org.opencontainers.image.licenses="UNLICENSED"
 #LABEL org.opencontainers.image.title gets set to the repo's name
 #LABEL org.opencontainers.image.url gets set to the repo's URL
 #LABEL org.opencontainers.image.version gets set to the repo's branch/tag name
-
-# The Rocker project makes container images for R.
-# We'll be bringing in a specific Shiny version, so we can't use their Shiny
-# container images.  Instead, we'll use their reproducable images.
-# NOTE: This is where the R version is set!
-FROM rocker/r-ver:4.3.2
-LABEL org.opencontainers.image.base.name="rocker/r-ver:4.3.2"
 
 # Install any Ubuntu packages that we need for our R packages.
 RUN apt-get update && \
