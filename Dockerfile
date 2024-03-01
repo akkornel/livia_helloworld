@@ -5,6 +5,11 @@
 # NOTE: This is where the R version is set!
 FROM rocker/shiny:4.3.2
 
+# Install any Ubuntu packages that we need for our R packages.
+RUN apt-get update && \
+	apt-get install -y libodbc2 && \
+	apt-get clean && rm -rf /tmp/*
+
 # Copy all of the files into the container's scripts directory, and set that to
 # be the working directory (the PWD) for all the R commands we run.
 COPY . /usr/local/src/myscripts
