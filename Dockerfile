@@ -25,6 +25,13 @@ RUN R -q -e 'install.packages("renv")' && rm -rf /tmp/*
 RUN R -q -e 'renv::restore()' && \
 	rm -rf /tmp/*
 
+# Declare the environment variables we want, and set some default values.
+# NOTE: It's understood that these defaults won't work in production.
+ENV SERVER 127.0.0.1
+ENV DB noDB
+ENV DB_USERNAME noUsername
+ENV DB_PW noPassword
+
 # When the container is run without an explicit command, this is what we do:
 # Start our Shiny app!  Listen on port 3838, and expose that to the outside.
 EXPOSE 3838
