@@ -20,9 +20,11 @@ LABEL org.opencontainers.image.licenses="UNLICENSED"
 #LABEL org.opencontainers.image.url gets set to the repo's URL
 #LABEL org.opencontainers.image.version gets set to the repo's branch/tag name
 
+# Start with an apt-get upgrade
+RUN apt-get update && apt-get upgrade -y && apt-get clean && rm -rf /tmp/*
+
 # Install any Ubuntu packages that we need for our R packages.
-RUN apt-get update && \
-	apt-get install -y libodbc2 && \
+RUN apt-get install -y libodbc2 && \
 	apt-get clean && rm -rf /tmp/*
 
 # Copy all of the files into the container's scripts directory, and set that to
