@@ -9,12 +9,14 @@ LABEL org.opencontainers.image.base.name="rocker/r-ver:4.3.2"
 
 # Set some image metadata!
 # NOTE: Some of the OCI labels are set automatically by the GitHub Actions workflow.
+#       For labes not set automatically, you'll need to set them both here
+#       *and* in the workflow.
 # NOTE: org.opencontainers.image.base.name is set above this block, as a subtle
 #       reminder that, when you change the source image, you also need to
 #       update the label!
-LABEL org.opencontainers.image.description="A simple app to test if this all works!"
 LABEL org.opencontainers.image.documentation="TBD"
-LABEL org.opencontainers.image.licenses="UNLICENSED"
+#LABEL org.opencontainers.image.description gets set to the repo's description
+#LABEL org.opencontainers.image.licenses gets set to the license GitHub detects
 #LABEL org.opencontainers.image.source gets set to the repo's URL
 #LABEL org.opencontainers.image.title gets set to the repo's name
 #LABEL org.opencontainers.image.url gets set to the repo's URL
