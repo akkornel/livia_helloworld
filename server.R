@@ -7,7 +7,7 @@ server <- function(input, output, session) {
   
   lgr$info('testing logging 1')
   server<-Sys.getenv('SERVER')
-  lgr$info('testing logging 2')
+  lgr$info('testing logging 3')
   
   database<-Sys.getenv('DB')
   username<-Sys.getenv('DB_USERNAME')
