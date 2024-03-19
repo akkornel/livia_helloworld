@@ -40,6 +40,12 @@ jobs:
         uses: docker/metadata-action@v5.5.1
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          labels: |
+            org.opencontainers.image.base.name=rocker/r-ver:4.3.2
+            org.opencontainers.image.documentation=TBD
+          annotations: |
+            org.opencontainers.image.base.name=rocker/r-ver:4.3.2
+            org.opencontainers.image.documentation=TBD
 
       - id: build
         name: Build and push
